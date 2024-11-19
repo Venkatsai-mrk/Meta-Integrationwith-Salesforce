@@ -1,0 +1,89 @@
+.notification {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 0.5em;
+    font-size: 0.75em;
+  }
+  .clickcolor{
+    background: #E0E0E0;
+  }
+table {
+  table-layout: fixed;
+  font-family: 'Arial';
+  margin: 25px auto;
+  border-collapse: collapse;
+  border: 1px solid #eee;
+  border-bottom: 2px solid #00cccc;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.10),
+    0px 10px 20px rgba(0,0,0,0.05),
+    0px 20px 20px rgba(0,0,0,0.05),
+    0px 30px 20px rgba(0,0,0,0.05);
+}
+
+table tr:hover {
+  background: #f4f4f4;
+}
+
+table tr:hover td {
+  color: #555;
+}
+
+table th, table td {
+  word-wrap: break-word;
+  color: #999;
+  border: 1px solid #eee;
+  padding: 12px 35px;
+  border-collapse: collapse;
+}
+
+table th {
+  background: #00cccc;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+table th.last {
+  border-right: none;
+}
+
+.tabset {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid transparent; /* For active tab indication */
+}
+
+.tab:hover {
+    background-color: #f0f0f0; /* Change on hover */
+}
+
+.tab-image {
+    width: 30px; /* Adjust size as needed */
+    height: auto;
+    margin-right: 5px; /* Space between image and label */
+}
+
+.message-count {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 5px;
+    font-weight: bold;
+    margin-left: 5px; /* Space between label and count */
+}
+
+.tab-content {
+    margin-top: 20px;
+    text-align: center;
+}

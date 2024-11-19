@@ -1,0 +1,34 @@
+.slds-chat-message__meta {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.outgoing-chats-msg{
+    border-radius: 10px;
+    font-size: 14px;
+    color: #fff;
+    width: 100%;
+    box-shadow: rgb(0 0 0 / 25%) 0px 2px 5px 2px;
+}
+.received-msg-inbox {
+    background: #efefef none repeat scroll 0 0;
+    border-radius: 10px;
+    color: #646464;
+    font-size: 14px;
+    width: 100%;
+    box-shadow: rgb(0 0 0 / 25%) 0px 5px 5px 2px;
+}
+.chatArea{
+   width: 100%; 
+   border-radius: 10px;
+   border-bottom: 2px solid #00cccc;
+   border-left: 2px solid #00cccc;
+   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+}
+
+.header{
+     background: #00cccc;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 12px;
+}
