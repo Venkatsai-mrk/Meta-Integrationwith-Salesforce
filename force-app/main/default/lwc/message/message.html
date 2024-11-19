@@ -1,0 +1,96 @@
+<template>
+
+    <lightning-card>
+        <div class="slds-grid slds-grid_align-spread slds-m-around_medium">
+            <div class="slds-grid slds-grid_align-start">
+                <lightning-icon icon-name="custom:custom53" alternative-text="WhatsApp" size="small"
+                    class="slds-m-right_small"></lightning-icon>
+                <h2 class="slds-text-heading_medium">Notification History</h2>
+            </div>
+        </div>
+        <div class="slds-m-around_medium">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_2-of-3">
+                    <lightning-input required message-when-value-missing="Please provide the phone of the customer"
+                        type="text" placeholder="Enter Customer Phone Number and Click chat...." label="Send Message"
+                        variant="label-hidden" onchange={handlePhoneChange}>
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-shrink-none">
+                    <lightning-button variant="brand" label="Chat" disabled={disableButt} title="Chat with Customer"
+                        onclick={handleChatComp}>
+                    </lightning-button>
+                </div>
+            </div>
+
+            <div class="tabset">
+                <div class="tab" data-tab-name="WhatsApp" onclick={handleTabClick}>
+                    <img src={whatsappImage} alt="WhatsApp" class="tab-image" />
+            WhatsApp <span class="message-count" if:true={whatsappMessageCount}>{whatsappMessageCount}</span>
+                </div>
+                <div class="tab" data-tab-name="FaceBook" onclick={handleTabClick}>
+                    <img src={facebookImage} alt="Facebook" class="tab-image" />
+            Facebook Messenger <span class="message-count" if:true={facebookMessageCount}>{facebookMessageCount}</span>
+                </div>
+                <div class="tab" data-tab-name="Instagram" onclick={handleTabClick}>
+                    <img src={instagramImage} alt="Instagram" class="tab-image" />
+            Instagram <span class="message-count" if:true={instagramMessageCount}>{instagramMessageCount}</span>
+                </div>
+            </div>
+            <!--template if:true={openTable}-->
+                <div class="tab-content">
+                    <div class="slds-p-around_none">
+                        <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_resizable-cols">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="User Name">Customer Name</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Customer Phone">Customer Id or Phone</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Date Received">Message Content</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Date Received">Date Received</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={filteredMessages} for:item="message">
+                                    <tr key={message.Id}>
+                                        <td data-label="User Name">
+                                            <div class="slds-truncate" title={message.CustomerName__c}>
+                                                {message.CustomerName__c}
+                                            </div>
+                                        </td>
+                                        <td data-label="Customer Phone">
+                                            <div class="slds-truncate" title={message.CustomerPhone__c}>
+                                                <a href="javascript:void(0);" data-id={message.CustomerPhone__c}
+                                                    onclick={handleMobileClick}>{message.CustomerPhone__c}</a>
+                                            </div>
+                                        </td>
+                                        <td data-label="Message Content">
+                                            <div class="slds-truncate" title={message.MessageContent__c}>
+                                                <b> <lightning-formatted-rich-text value={message.MessageContent__c}>
+                                            </lightning-formatted-rich-text></b>
+                                            </div>
+                                        </td>
+                                        <td data-label="Date Received">
+                                            <div class="slds-truncate" title={message.CreatedDate}>{message.CreatedDate}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+        <template if:true={isChatOpen}>
+            <c-chatcomponent phone={mobileToChildCom} is-modal-open={isChatOpen} onmobileclick={mobilehandler}>
+            </c-chatcomponent>
+        </template>
+    </lightning-card>
+</template>

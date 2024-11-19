@@ -1,0 +1,93 @@
+<template>
+    <lightning-card>
+        <template if:true={isModalOpen}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+
+
+                        
+                    </button>
+                        <div class="slds-chat-bookend header">
+                            <span><lightning-icon icon-name="utility:chat" alternative-text="chat" size="small"
+                                            ></lightning-icon>
+                                                  </span>
+                            <p>Chat started by-
+                                <b>{customerNameforHeader}</b>
+                            </p>
+                        </div>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <section if:true={showMessages} role="log" class="chatArea slds-chat slds-scrollable"
+                            style="height: 400px;">
+                            <ul class="slds-chat-list">
+                                <template for:each={messages} for:item="message" for:index="index">
+                                    <li if:true={message.Outgoing__c} key={message.Id}
+                                        class="slds-chat-listitem slds-chat-listitem_inbound">
+                                        <div class="slds-chat-message">
+                                            <span aria-hidden="true" class="slds-avatar slds-avatar_circle slds-chat-avatar">
+                            <abbr class="slds-avatar__initials slds-avatar__initials_inverse" title={message.AgentName__c}>DC</abbr>
+                            </span>
+                                            <div class="slds-chat-message__body">
+                                                <div
+                                                    class="slds-chat-message__text slds-chat-message__text_outbound outgoing-chats-msg ">
+                                                    <span>
+                                    <lightning-formatted-rich-text value={message.MessageContent__c}></lightning-formatted-rich-text>
+                                </span>
+                                                </div>
+                                                <div class="slds-chat-message__meta"
+                                                    aria-label="said Andy Martinez at 5:29 PM">
+                                                    {message.AgentName__c} • {message.CreatedDate}</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li if:false={message.Outgoing__c} key={message.Id}
+                                        class="slds-chat-listitem slds-chat-listitem_outbound">
+                                        <div class="slds-chat-message">
+                                            <div class="slds-chat-message__body">
+                                                <div
+                                                    class="slds-chat-message__text slds-chat-message__text_inbound received-msg-inbox">
+                                                    <span>
+                                    <lightning-formatted-rich-text value={message.MessageContent__c}></lightning-formatted-rich-text>
+                                </span>
+                                                </div>
+                                                <div class="slds-chat-message__meta"
+                                                    aria-label="said Amber Cann at 5:23 PM">
+                                                    {message.CustomerName__c} • {message.CreatedDate}</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                            <div if:true={showMessages} class="slds-m-around_small">
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col slds-size_11-of-12">
+                                        <lightning-input class="chat-input" type="text" value={messageText}
+                                            placeholder="type here....."
+                                            message-when-value-missing="Please provide a valid message for the customer to be sent!"
+                                            required label="Send Message" variant="label-hidden"
+                                            onchange={handleChange}>
+                                        </lightning-input>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-12" if:true={messageText}>
+                                        <lightning-button-icon icon-name="utility:send" alternative-text="send"
+                                            title="send" onclick={handleSendMessage}></lightning-button-icon>
+                                    </div>
+                                </div>
+                            </div>
+                            <lightning-spinner variant="brand" alternative-text="loading.." if:true={isSpinner}>
+                            </lightning-spinner>
+                        </section>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </lightning-card>
+</template>
