@@ -15,8 +15,6 @@
 		<members>WhatsAppLWCService</members>
 		<members>WhatsAppLWCServiceTest</members>
 		<members>WhatsAppMessage</members>
-		<members>WhatsAppMessageController</members>
-		<members>WhatsAppMessageControllerTest</members>
 		<members>WhatsAppMessageTest</members>
 		<members>WhatsAppUtils</members>
 		<members>message</members>
