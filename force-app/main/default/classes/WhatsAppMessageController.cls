@@ -2,8 +2,8 @@ public with sharing class WhatsAppMessageController {
     @AuraEnabled(Cacheable=true)
     public static void sendSMS(String businessPhoneNumber, String customerPhone, String messageContent) {
         // Replace these with your Twilio account SID and Auth Token
-        String accountSid = 'AC8229413cf66b237d6bf977ed6052ab2c';
-        String authToken = 'eb0cd34a516ac049e4ad8d4f1ab13c2d';
+        String accountSid = '';
+        String authToken = '';
         
         // Twilio API endpoint
         String twilioEndpoint = 'https://api.twilio.com/2010-04-01/Accounts/' + accountSid + '/Messages.json';
