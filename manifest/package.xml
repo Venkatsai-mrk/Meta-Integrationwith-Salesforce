@@ -7,8 +7,6 @@
 		<members>FaceBookRestResourceTest</members>
 		<members>InstagramRestResource</members>
 		<members>InstagramRestResourceTest</members>
-		<members>MessageController</members>
-		<members>MessageControllerTest</members>
 		<members>MessageTest</members>
 		<members>RestResourceForWebHooks</members>
 		<members>RestResourceForWebHooksTest</members>
